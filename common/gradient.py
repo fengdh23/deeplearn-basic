@@ -8,12 +8,14 @@ def numerical_diff(f, x):
 # 数值微分求梯度，传入x是一个向量
 def _numerical_gradient(f, x):
     h = 1e-4
-    grad = np.zeros_like(x)
+    grad = np.zeros_like(x) # 跟 x 一样维度的值为 0 的向量
     # 遍历x中的特征xi
-    for i in range(x.size):
+    for i in range(x.size): # 每次只能改变一个，处理后还要恢复
         tmp = x[i]
+
         x[i] = tmp + h
         fxh1 = f(x)
+
         x[i] = tmp - h
         fxh2 = f(x)
         # 利用中心差分公式计算偏导数

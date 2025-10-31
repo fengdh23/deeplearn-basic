@@ -43,16 +43,21 @@ def identity(x):
 def mean_squared_error(y, t):
     return 0.5 * np.sum((y - t) ** 2) # 向量相减
 
+#这段代码实现了交叉熵损失函数的计算。主要功能包括：
+# 维度统一：将一维输入数据reshape为二维格式
+# 标签处理：当目标值t与预测值y尺寸相同时，将其转换为类别索引
+# 损失计算：通过索引获取对应类别的预测概率，取对数后求和取负，再除以样本数得到平均交叉熵损失
+# 其中1e-10用于添加一个极小的正值，确保不会出现 log(0) 的情况
 # 交叉熵误差
 def cross_entropy(y, t):
     # 将y转为二维
     if y.ndim == 1:
         t = t.reshape(1, t.size)
         y = y.reshape(1, y.size)
-    # 将t转换为顺序编码（类别标签）
+    # 将t转换为顺序编码（即类别标签）
     if t.size == y.size:
         t = t.argmax(axis=1)
-    n = y.shape[0]
+    n = y.shape[0] # 第一个维度，即总数
     return -np.sum( np.log(y[np.arange(n), t] + 1e-10) ) / n
 
 if __name__ == '__main__':
