@@ -25,7 +25,7 @@ if __name__ == '__main__':
     # 1. 定义初始值
     init_x = np.array([-3.0, 4.0])
     # 2. 定义超参数
-    lr = 0.9
+    lr = 0.2
     num_iter = 200
     # 3. 使用梯度下降法，计算最小值点
     x, x_history = gradient_descent(f, init_x, lr, num_iter)
@@ -34,7 +34,7 @@ if __name__ == '__main__':
     # 画图
     plt.plot([-5, 5], [0, 0], '--b')
     plt.plot([0, 0], [-5, 5], '--b')
-    plt.scatter(x_history[:, 0], x_history[:, 1])
+    plt.scatter(x_history[:, 0], x_history[:, 1]) #0 第一个维度，1 第二个维度
     plt.xlim([-3.5, 3.5])
     plt.ylim([-4.5, 4.5])
     plt.xlabel("X[0]")
